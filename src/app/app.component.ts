@@ -12,9 +12,7 @@ export class AppComponent {
 
   text!: string;
  
-  constructor( public service : VoiceRecognitionService) {
-    this.service.init()
-   }
+  constructor( public service : VoiceRecognitionService) { }
  
   startService(){
     this.service.start()

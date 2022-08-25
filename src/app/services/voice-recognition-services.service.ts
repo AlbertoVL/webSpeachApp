@@ -35,13 +35,12 @@ export class VoiceRecognitionService {
     this.reconocimiento.addEventListener('end', () => {
       if (this.stopReconocimiento) {
         this.reconocimiento.stop();
-        console.log("Reconocimiento de voz finalizado")
       } else {
         this.wordConcat()
         this.reconocimiento.start();
       }
     });
-    
+
   }
   
   stop() {
