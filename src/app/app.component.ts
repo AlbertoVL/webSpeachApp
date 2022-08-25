@@ -1,10 +1,34 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VoiceRecognitionService } from './services/voice-recognition-services.service';
+
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
-  name = 'Angular ' + VERSION.major;
+export class AppComponent {
+  title = 'speakApp';
+
+  text!: string;
+ 
+  constructor( public service : VoiceRecognitionService) {
+    this.service.init()
+   }
+ 
+  startService(){
+    this.service.start()
+  }
+ 
+  stopService(){
+    this.service.stop()
+  }
+
+  lecturaService(){
+    var msg = new SpeechSynthesisUtterance(this.service.text);
+    msg.lang = 'es';
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(msg);
+  }
+  
 }
